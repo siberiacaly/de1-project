@@ -1,8 +1,8 @@
 ### Team members
 
-* Member 1 (responsible for ...)
-* Member 2 (responsible for ...)
-* Member 3 (responsible for ...)
+* Tomáš Calábek (responsible for ...)
+* Martin Olšiak (responsible for ...)
+* Tomáš Hutta (responsible for ...)
 
 ## Theoretical description and explanation
 
