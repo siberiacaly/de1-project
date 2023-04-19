@@ -1,7 +1,7 @@
 ### Team members
 
 * Tomáš Calábek (responsible for ...)
-* Martin Olšiak (responsible for ...)
+* Martin Olšiak (responsible for GitHub repository, Receiver, ShiftRegister)
 * Tomáš Hutta (responsible for ...)
 
 ## Theoretical description and explanation
@@ -26,5 +26,4 @@ Write an instruction manual for your application, including photos or a link to 
 
 ## References
 
-1. Put here the literature references you used.
-2. ...
+1. ...

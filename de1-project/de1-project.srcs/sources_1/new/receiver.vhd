@@ -38,33 +38,28 @@ entity receiver is
   port (
     clk   : in    std_logic;                    --! Main clock
     rst   : in    std_logic;                 --! High-active synchronous reset
-    fall_i : in std_logic;
-    rise_i : in std_logic;
+    data_in : in std_logic;
     dot_out : out std_logic;
     dash_out : out std_logic;
-     
-    
+    state : out std_logic_vector(1 downto 0) 
     );
 end entity receiver;
 
 architecture Behavioral of receiver is
 
--- Define the signal that uses different states
-  signal sig_state : t_state;
-
   -- Internal clock enable
   signal sig_en : std_logic;
 
   -- Local delay counter
-  signal sig_cnt : unsigned(4 downto 0);
-  signal pause_cnt : unsinged (4 downto 0);
+  signal sig_cnt : std_logic_vector(4 downto 0); -- delay between rising and falling edge
+  signal pause_cnt : std_logic_vector (4 downto 0); -- delay between falling and iising edge
 
   -- Specific values for local counter
-  constant c_DELAY_LONG : unsigned(4 downto 0) := b"1_1100"; --! 4-second delay
-  constant c_DELAY_SHORT : unsigned(4 downto 0) := b"0_1100"; --! 2-second delay
-  constant c_DELAY_DASH : unsigned(4 downto 0) := b"0_0110"; --! 1-second delay
-  constant c_DELAY_DOT : unsigned(4 downto 0) := b"0_0010"; --! 1-second delay
-  constant c_ZERO       : unsigned(4 downto 0) := b"0_0000"; --! Just zero
+ -- constant c_DELAY_LONG : std_logic_vector(4 downto 0) := b"1_1100"; --! 4-second delay
+  constant c_DELAY_SHORT : std_logic_vector(4 downto 0) := b"0_1100"; --! 2-second delay
+  -- constant c_DELAY_DASH : std_logic_vector(4 downto 0) := b"0_0110"; --! 1-second delay
+  constant c_DELAY_DOT : std_logic_vector(4 downto 0) := b"0_0010"; --! 1-second delay
+  constant c_ZERO       : std_logic_vector(4 downto 0) := b"0_0000"; --! Just zero
 
 
 begin
@@ -87,32 +82,36 @@ begin
       ce  => sig_en
     );
 
-p_receiver_button : process (clk) is
+p_receiver : process (clk) is
   begin
 
  if rising_edge(clk) then
 
-            if (reset = '1') then           -- Synchronous reset
-                dot_o <= '0';  -- Clear all bits
-                dash_o <= '0';  
-                en_o <= '0';        
+            if (rst = '1') then      -- Synchronous reset
+                dot_out <= '0';  -- Clear all bits
+                dash_out <= '0';  
+                sig_en <= '0';        
                 
-            elsif (sig_en = '1') then
-                
-                
-                if (fall_i =  '1') and sig_cnt < DELAY_DOT then
-                    dot_out = 1
-            
-            
-                elsif (fall_i =  '1') and sig_cnt > DELAY_DOT and sig_cnt < DELAY_DASH then
-                    dash_out = 1
-                    
-                if rise_i /= '1' then
-                  sig_cnt <= sig_cnt + 1;
-                  
-                
-                
-
-end process p_receiver_button;
+            elsif falling_edge(data_in) then        
+                if (sig_cnt <= c_DELAY_DOT) then  -- check if dot
+                    dot_out <= '1';   
+                               
+                elsif (sig_cnt > c_DELAY_DOT) then    -- check if dash
+                    dash_out <= '1';
+                end if;
+            elsif rising_edge(data_in) then
+                if (pause_cnt <= c_DELAY_SHORT) then  -- check if dot
+                      state <= "01";-- end of char
+                               
+                elsif (pause_cnt > c_DELAY_SHORT) then    -- check if dash
+                       state <= "10";-- end of word
+                end if;
+            else 
+                dot_out <= '0';  -- Clear all bits
+                dash_out <= '0';  
+                sig_en <= '0';   
+            end if;
+  end if;                                                                   
+end process p_receiver;
 
 end Behavioral;
