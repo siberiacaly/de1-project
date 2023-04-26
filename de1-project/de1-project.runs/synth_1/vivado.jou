@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 26 10:51:21 2023
+# Process ID: 10484
+# Current directory: C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.runs/synth_1
+# Command line: vivado.exe -log morse_decoder.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source morse_decoder.tcl
+# Log file: C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.runs/synth_1/morse_decoder.vds
+# Journal file: C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source morse_decoder.tcl -notrace

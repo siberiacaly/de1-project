@@ -1,7 +1,7 @@
 ### Team members
 
 * Tomáš Calábek (responsible for ...)
-* Martin Olšiak (responsible for GitHub repository, Receiver, ShiftRegister)
+* Martin Olšiak (responsible for GitHub repository, Receiver (Design and TB), ShiftRegister)
 * Tomáš Hutta (responsible for ...)
 
 ## Theoretical description and explanation

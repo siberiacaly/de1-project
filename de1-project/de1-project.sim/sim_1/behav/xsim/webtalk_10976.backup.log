@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Webtalk v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 26 09:37:07 2023
+# Process ID: 10976
+# Current directory: C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.sim/sim_1/behav/xsim/xsim.dir/morse_decoder_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.sim/sim_1/behav/xsim/xsim.dir/morse_decoder_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] 'C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.sim/sim_1/behav/xsim/xsim.dir/morse_decoder_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Wed Apr 26 09:37:10 2023. For additional details about this file, please refer to the WebTalk help file at C:/appz/Xilinx/Vivado/2020.2/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Wed Apr 26 09:37:10 2023...

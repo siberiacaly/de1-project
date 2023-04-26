@@ -41,7 +41,8 @@ end entity clock_enable;
 architecture behavioral of clock_enable is
 
   -- Local counter
-  signal sig_cnt : natural;
+  signal sig_cnt_local : natural;
+
 
 begin
 
@@ -52,22 +53,21 @@ begin
   --------------------------------------------------------
   p_clk_enable : process (clk) is
   begin
+         if rising_edge(clk) then    -- Synchronous process
 
-    if (rising_edge(clk)) then            -- Synchronous process
-      if (rst = '1') then                 -- High-active reset
-        sig_cnt <= 0;                     -- Clear local counter
-        ce      <= '0';                   -- Set output to low
-
-      -- Test number of clock periods
-      elsif (sig_cnt >= (g_MAX - 1)) then
-        sig_cnt <= 0;                     -- Clear local counter
-        ce      <= '1';                   -- Generate clock enable pulse
-      else
-        sig_cnt <= sig_cnt + 1;
-        ce      <= '0';
-      end if;
-    end if;
-
+            if (rst = '1') then   -- High active reset
+                sig_cnt_local <= 0;   -- Clear local counter
+                ce        <= '0'; -- Set output to low
+            -- Test number of clock periods
+            elsif (sig_cnt_local >= (g_MAX - 1)) then
+                sig_cnt_local <= 0;   -- Clear local counter
+                ce        <= '1'; -- Generate clock enable pulse
+            else
+                sig_cnt_local <= sig_cnt_local + 1;
+                ce        <= '0';
+            end if;
+        end if;
   end process p_clk_enable;
 
+  
 end architecture behavioral;

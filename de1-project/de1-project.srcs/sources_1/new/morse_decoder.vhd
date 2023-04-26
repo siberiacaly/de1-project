@@ -61,10 +61,10 @@ receiver0 : entity work.receiver
     port map(
     clk => clk,
     rst => rst,
-    data_in => data_in,
-    dash_out => dash_in,
-    dot_out => dot_in,
-    state => reciever_state
+    data_in => data_in
+    --dash_in <= dash_out,
+    --dot_in <= dot_out,
+    --state => reciever_state
     );
     
 

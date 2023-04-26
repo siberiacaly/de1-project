@@ -49,17 +49,17 @@ architecture Behavioral of receiver is
 
   -- Internal clock enable
   signal sig_en : std_logic;
-
+  signal sig_cnt : natural;
+  signal pause_cnt : natural;
   -- Local delay counter
-  signal sig_cnt : std_logic_vector(4 downto 0); -- delay between rising and falling edge
-  signal pause_cnt : std_logic_vector (4 downto 0); -- delay between falling and iising edge
 
+  
   -- Specific values for local counter
  -- constant c_DELAY_LONG : std_logic_vector(4 downto 0) := b"1_1100"; --! 4-second delay
-  constant c_DELAY_SHORT : std_logic_vector(4 downto 0) := b"0_1100"; --! 2-second delay
+  constant c_DELAY_SHORT : natural := 2; --! 2-second delay
   -- constant c_DELAY_DASH : std_logic_vector(4 downto 0) := b"0_0110"; --! 1-second delay
-  constant c_DELAY_DOT : std_logic_vector(4 downto 0) := b"0_0010"; --! 1-second delay
-  constant c_ZERO       : std_logic_vector(4 downto 0) := b"0_0000"; --! Just zero
+  constant c_DELAY_DOT : natural := 1; --! 1-second delay
+  constant c_ZERO       : natural := 0; --! Just zero
 
 
 begin
@@ -80,37 +80,33 @@ begin
       clk => clk,
       rst => rst,
       ce  => sig_en
-    );
+    );    
 
-p_receiver : process (clk) is
+p_receiver : process(clk)
   begin
 
  if rising_edge(clk) then
-
             if (rst = '1') then      -- Synchronous reset
-                dot_out <= '0';  -- Clear all bits
-                dash_out <= '0';  
-                sig_en <= '0';        
-                
-            elsif falling_edge(data_in) then        
-                if (sig_cnt <= c_DELAY_DOT) then  -- check if dot
-                    dot_out <= '1';   
-                               
-                elsif (sig_cnt > c_DELAY_DOT) then    -- check if dash
-                    dash_out <= '1';
+                sig_cnt <= 0; 
+            else
+                if (data_in = '1') then        
+                     if (sig_cnt <= c_DELAY_DOT) then  -- check if dot
+                         dot_out <= '1';                   
+                     elsif (sig_cnt > c_DELAY_DOT) then    -- check if dash
+                         dash_out <= '1';
+                     end if;
+                elsif (data_in = '0') then
+                     if (pause_cnt <= c_DELAY_SHORT) then  -- check if dot
+                         state <= "01";-- end of char     
+                    elsif (pause_cnt > c_DELAY_SHORT) then    -- check if dash
+                          state <= "10";-- end of word
+                    end if;
+                else 
+                     dot_out <= '0';  -- Clear all bits
+                     dash_out <= '0';  
+                     sig_en <= '0';   
                 end if;
-            elsif rising_edge(data_in) then
-                if (pause_cnt <= c_DELAY_SHORT) then  -- check if dot
-                      state <= "01";-- end of char
-                               
-                elsif (pause_cnt > c_DELAY_SHORT) then    -- check if dash
-                       state <= "10";-- end of word
-                end if;
-            else 
-                dot_out <= '0';  -- Clear all bits
-                dash_out <= '0';  
-                sig_en <= '0';   
-            end if;
+            end if; 
   end if;                                                                   
 end process p_receiver;
 
