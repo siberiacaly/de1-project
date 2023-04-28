@@ -16,13 +16,13 @@ Morse code can be programmed in VHDL using a combination of logic gates and a fi
 
 Here's a general overview of how this could be done:
 
-Convert the input text to Morse code signals using a lookup table that maps each character to its Morse code representation (i.e., a sequence of dots and dashes).
+1.)Convert the input text to Morse code signals using a lookup table that maps each character to its Morse code representation (i.e., a sequence of dots and dashes).
 
-Use logic gates to implement the mapping of dots and dashes to corresponding signals (e.g., high and low voltage levels).
+2.)Use logic gates to implement the mapping of dots and dashes to corresponding signals (e.g., high and low voltage levels).
 
-Implement a finite state machine that generates the timing and sequencing of the Morse code signals. The machine would have different states corresponding to dots, dashes, and the spaces between dots and dashes. The machine would transition between these states based on a clock signal and the input text.
+3.)Implement a finite state machine that generates the timing and sequencing of the Morse code signals. The machine would have different states corresponding to dots, dashes, and the spaces between dots and dashes. The machine would transition between these states based on a clock signal and the input text.
 
-Output the Morse code signals to a speaker or other output device.
+4.)Output the Morse code signals to output device.
 
 ## Hardware description of demo application
 
