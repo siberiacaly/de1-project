@@ -1,6 +1,6 @@
 ### Team members
 
-* Tomáš Calábek (responsible for ...)
+* Tomáš Calábek (responsible for Morse decoder)
 * Martin Olšiak (responsible for GitHub repository, Receiver (Design and TB), ShiftRegister)
 * Tomáš Hutta (responsible for ...)
 
