@@ -82,32 +82,34 @@ begin
       ce  => sig_en
     );    
 
-p_receiver : process(clk)
-  begin
-
- if rising_edge(clk) then
-            if (rst = '1') then      -- Synchronous reset
-                sig_cnt <= 0; 
-            else
-                if (data_in = '1') then        
-                     if (sig_cnt <= c_DELAY_DOT) then  -- check if dot
-                         dot_out <= '1';                   
-                     elsif (sig_cnt > c_DELAY_DOT) then    -- check if dash
-                         dash_out <= '1';
-                     end if;
-                elsif (data_in = '0') then
-                     if (pause_cnt <= c_DELAY_SHORT) then  -- check if dot
-                         state <= "01";-- end of char     
-                    elsif (pause_cnt > c_DELAY_SHORT) then    -- check if dash
-                          state <= "10";-- end of word
-                    end if;
-                else 
-                     dot_out <= '0';  -- Clear all bits
-                     dash_out <= '0';  
-                     sig_en <= '0';   
-                end if;
-            end if; 
-  end if;                                                                   
-end process p_receiver;
+    p_receiver : process(clk)
+    begin
+      if rising_edge(clk) then
+        if (rst = '1') then      -- Synchronous reset
+          sig_cnt <= 0;
+          pause_cnt <= 0;
+          sig_en <= '0'; -- Initialize sig_en
+        else
+          if (data_in = '1') then        
+            if (sig_cnt <= c_DELAY_DOT) then  -- check if dot
+              dot_out <= '1';                   
+            elsif (sig_cnt > c_DELAY_DOT) then    -- check if dash
+              dash_out <= '1';
+            end if;
+          elsif (data_in = '0') then
+            if (pause_cnt <= c_DELAY_SHORT) then  -- check if dot
+              state <= "01";-- end of char     
+            elsif (pause_cnt > c_DELAY_SHORT) then    -- check if dash
+              state <= "10";-- end of word
+            end if;
+          else 
+            dot_out <= '0';  -- clear all bits
+            dash_out <= '0';  
+            sig_en <= '0';   
+          end if;
+          sig_en <= '1'; -- enable clock enable entity
+        end if; 
+      end if;                                                                   
+    end process p_receiver;
 
 end Behavioral;
