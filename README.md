@@ -42,4 +42,5 @@ Write an instruction manual for your application, including photos or a link to 
 
 ## References
 
-1. ...
+1. https://www.researchgate.net/publication/305379385_Morse_code_decoder_design_in_VHDL_using_FPGA_Spartan_3E_development_kit 
+2. https://www.instructables.com/Basys-3-Morse-Decoder/
