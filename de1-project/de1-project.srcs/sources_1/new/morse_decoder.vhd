@@ -107,16 +107,57 @@ architecture Behavioral of morse_decoder is
         else
           return "00000000";
         end if;
-      when 11 => -- D or C or Y or ?
-        if dash_count = 2 then
-          return "01000100"; -- D
-        elsif dash_count = 3 then
-          return "01000011"; -- C
-        elsif dash_count = 5 then
-          return "01011001"; -- Y
-        elsif dash_count = 4 then
-          return "00111111"; -- ?
-        else
-          return "00000000";
-        end if;
-      when 12 => -- B or N or Z or 7
+     when 11 => -- D or C or Y or ?
+  if dash_count = 2 then
+    return "01000100"; -- D
+  elsif dash_count = 3 then
+    return "01000011"; -- C
+  elsif dash_count = 5 then
+    return "01011001"; -- Y
+  elsif dash_count = 4 then
+    return "00111111"; -- ?
+  else
+    return "00000000";
+  end if;
+when others =>
+  return "00000000";
+end case;
+end function;
+
+begin
+  process(clk, rst)
+  begin
+    if rst = '1' then
+      current_state <= START;
+      char_out <= "00000000";
+    elsif rising_edge(clk) then
+      case current_state is
+        when START =>
+          if dot_in = '1' then
+            current_state <= DOT;
+            dot_cnt <= dot_cnt + 1;
+          elsif dash_in = '1' then
+            current_state <= DASH;
+            dash_cnt <= dash_cnt + 1;
+          end if;
+        when DOT =>
+          if dot_in = '0' then
+            current_state <= CHAR_DONE;
+          else
+            dot_cnt <= dot_cnt + 1;
+          end if;
+        when DASH =>
+          if dash_in = '0' then
+            current_state <= CHAR_DONE;
+          else
+            dash_cnt <= dash_cnt + 1;
+          end if;
+        when CHAR_DONE =>
+          char_out <= decode_char(dot_cnt, dash_cnt);
+          current_state <= START;
+          dot_cnt <= 0;
+          dash_cnt <= 0;
+      end case;
+    end if;
+  end process;
+end Behavioral;

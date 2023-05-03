@@ -2,21 +2,24 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Wed May  3 09:43:37 2023
-# Process ID: 6512
+# Start of session at: Wed May  3 09:13:42 2023
+# Process ID: 8036
 # Current directory: C:/Users/237881/Desktop/de1-project/de1-project
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8784 C:\Users\237881\Desktop\de1-project\de1-project\de1-project.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1964 C:\Users\237881\Desktop\de1-project\de1-project\de1-project.xpr
 # Log file: C:/Users/237881/Desktop/de1-project/de1-project/vivado.log
 # Journal file: C:/Users/237881/Desktop/de1-project/de1-project\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/237881/Desktop/de1-project/de1-project/de1-project.xpr
-WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/237881/Desktop/de1-project/de1-project/de1-project.gen/sources_1'.
+INFO: [Project 1-313] Project file moved from 'C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project' since last save.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'C:/Users/237881/Desktop/de1-project/de1-project/de1-project.gen/sources_1', nor could it be found using path 'C:/Users/xolsia00/Desktop/git/project/de1-project/de1-project/de1-project.gen/sources_1'.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/appz/Xilinx/Vivado/2020.2/data/ip'.
 update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
 exit
-INFO: [Common 17-206] Exiting Vivado at Wed May  3 10:01:46 2023...
+INFO: [Common 17-206] Exiting Vivado at Wed May  3 09:41:09 2023...
