@@ -1,6 +1,6 @@
 ### Team members
 
-* Tomáš Calábek (responsible for MorseC decoder, MorseC transmitter, Display source files, Receiver (design bugs), Repository )
+* Tomáš Calábek 237881 (responsible for MorseC decoder, MorseC transmitter, Display source files, Receiver (design bugs), Repository )
 * Martin Olšiak (responsible for GitHub repository, Receiver (Design and TB), ShiftRegister)
 * Tomáš Hutta (responsible for DIDNT PARTICIPATE - SICK?)(dal o sobě vědět den před prezentací ačkoliv měl přidělené úkoly)
 
