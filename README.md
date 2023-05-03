@@ -2,7 +2,8 @@
 
 * Tomáš Calábek (responsible for MorseC decoder, MorseC transmitter, Display source files, Receiver (design bugs), Repository )
 * Martin Olšiak (responsible for GitHub repository, Receiver (Design and TB), ShiftRegister)
-* Tomáš Hutta (responsible for DIDNT PARTICIPATE - SICK?)
+* Tomáš Hutta (responsible for DIDNT PARTICIPATE - SICK?)(dal o sobě vědět den před prezentací ačkoliv měl přidané úkoly)
+
 
 ## Theoretical description and explanation
 
